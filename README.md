@@ -1,3 +1,7 @@
+# 코로나19 확진 관련 정보를 알려주는 애플리케이션
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
