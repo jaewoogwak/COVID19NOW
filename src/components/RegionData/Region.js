@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Region = ({ data }) => {
+const Region = ({ data, img }) => {
     console.log('Region', data.countryName);
     const countryName = data.countryName;
     const totalCase = data.totalCase;
@@ -12,7 +12,7 @@ const Region = ({ data }) => {
         <div>
             <article class="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
                 <div class="tc">
-                    <img src="http://tachyons.io/img/avatar_1.jpg" class="br-100 h3 w3 dib" title="Photo of a kitty staring at you" />
+                    <img src= {img} class="br-100 h3 w3 dib" title="Photo of a kitty staring at you" />
                     <h1 class="f4">{countryName}</h1>
                     <hr class="mw5 bb bw1 b--black-10" />
                 </div>
@@ -29,13 +29,10 @@ const Region = ({ data }) => {
                     <div>
                         {countryName} 오늘 확진자 수 : {newCase}
                     </div>
-
                 </p>
             </article>
         </div>
     );
-
 }
-
 
 export default Region;

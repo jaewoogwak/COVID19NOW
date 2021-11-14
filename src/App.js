@@ -3,6 +3,14 @@ import KoreaTotal from './components/TotalData/KoreaTotal';
 import Region from './components/RegionData/Region';
 import './App.css';
 import 'tachyons';
+import axios from 'axios';
+import total from './components/img/total.png'
+import seoul from './components/img/seoul.png'
+import incheon from './components/img/incheon.png'
+import daejeon from './components/img/daejeon.png'
+import daegu from './components/img/daegu.png'
+import busan from './components/img/busan.png'
+
 
 class App extends React.Component {
   constructor() {
@@ -28,7 +36,7 @@ class App extends React.Component {
           newCase: 0,
           recoverd: 0,
           death: 0,
-        }, 
+        },
         daegu: {
           countryName: 'daegu',
           totalCase: 0,
@@ -50,18 +58,15 @@ class App extends React.Component {
           recoverd: 0,
           death: 0,
         }
-
       }
     }
   }
-
   // 데이터 가져오기
   getData = async () => {
-    const totalData = await fetch('https://api.corona-19.kr/korea/?serviceKey=uE5PJdHtIc9sQaG2wxiWqpe14nTXVbOo8');
-    const totalResponse = await totalData.json();
-    const regionData = await fetch('https://api.corona-19.kr/korea/country/new/?serviceKey=uE5PJdHtIc9sQaG2wxiWqpe14nTXVbOo8');
-    const regionResponse = await regionData.json();
-    console.log('getData for region', regionResponse);
+    const totalResponse = (await axios.get('https://api.corona-19.kr/korea/?serviceKey=uE5PJdHtIc9sQaG2wxiWqpe14nTXVbOo8')).data;
+    console.log('getData for total', totalResponse.data);
+    const regionResponse = (await axios.get('https://api.corona-19.kr/korea/country/new/?serviceKey=uE5PJdHtIc9sQaG2wxiWqpe14nTXVbOo8')).data;
+    console.log('getData for region', regionResponse.data);
     this.setState({
       value: {
         total: {
@@ -114,22 +119,19 @@ class App extends React.Component {
   }
 
   render() {
-    const { aa } = this.state.value;
     return (
       <div className="center">
-        <h1>코로나19 정보</h1>
-        <div style={{ display: 'flex' , textAlign:'center'}}>
-          <KoreaTotal data={aa.total} />
-          <Region data={this.state.value.seoul} />
-          <Region data={this.state.value.busan} />
-          <Region data={this.state.value.daegu}/>
-          <Region data={this.state.value.incheon}/>
-          <Region data={this.state.value.daejeon}/>
+        <h1 style={{"textAlign" : "center"}}>코로나19 정보</h1>
+        <div style = {{"display" : "flex", "margin-left" : "50px"}}>
+          <KoreaTotal data={this.state.value.total} img = {total} />,
+          <Region data={this.state.value.seoul} img ={seoul}/>,
+          <Region data={this.state.value.busan} img ={busan}/>,
+          <Region data={this.state.value.daegu} img ={daegu}/>,
+          <Region data={this.state.value.incheon} img ={incheon}/>,
+          <Region data={this.state.value.daejeon} img ={daejeon}/>
         </div>
-
       </div>
     );
-
   }
 }
 
