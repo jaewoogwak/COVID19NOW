@@ -104,7 +104,7 @@ function App() {
     death: 0,
   });
 
-
+  // fdsafdsfdasdg
   // 데이터 가져오기
   const getData = async () => {
     const totalResponse = (await axios.get('https://api.corona-19.kr/korea/?serviceKey=uE5PJdHtIc9sQaG2wxiWqpe14nTXVbOo8')).data;
